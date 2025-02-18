@@ -1,6 +1,11 @@
 const buttonColours = ["red", "blue", "green", "yellow"];
 const gamePattern = [];
 
+function handleBtnClick(evt) {
+  const clickedObj = evt.target;
+  console.log($(clickedObj).attr("id"));
+}
+
 function playSound(selectedColor) {
   const src = "./sounds/" + selectedColor + ".mp3";
   const audioObj = new Audio(src);
@@ -41,6 +46,8 @@ function countColours(pattern) {
 
   return colourCount;
 }
+
+$(".btn").on("click", handleBtnClick);
 
 //console.log(randomChosenColour);
 
