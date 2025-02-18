@@ -5,9 +5,11 @@ const userClickedPattern = [];
 function handleBtnClick(evt) {
   const clickedObj = evt.target;
   const userChosenColour = $(clickedObj).attr("id");
-  console.log(userChosenColour);
+  //console.log(userChosenColour);
   userClickedPattern.push(userChosenColour);
-  console.log(userClickedPattern);
+  //console.log(userClickedPattern);
+  playSound(userChosenColour);
+  pressSimulation($(clickedObj));
 }
 
 function playSound(selectedColor) {
