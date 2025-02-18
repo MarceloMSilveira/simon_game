@@ -1,9 +1,13 @@
 const buttonColours = ["red", "blue", "green", "yellow"];
 const gamePattern = [];
+const userClickedPattern = [];
 
 function handleBtnClick(evt) {
   const clickedObj = evt.target;
-  console.log($(clickedObj).attr("id"));
+  const userChosenColour = $(clickedObj).attr("id");
+  console.log(userChosenColour);
+  userClickedPattern.push(userChosenColour);
+  console.log(userClickedPattern);
 }
 
 function playSound(selectedColor) {
