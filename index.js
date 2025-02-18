@@ -1,6 +1,12 @@
 const buttonColours = ["red", "blue", "green", "yellow"];
 const gamePattern = [];
 
+function playSound(selectedColor) {
+  const src = "./sounds/" + selectedColor + ".mp3";
+  const audioObj = new Audio(src);
+  audioObj.play();
+}
+
 function pressSimulation(element) {
   element.addClass("pressed");
   setTimeout(() => {
@@ -21,6 +27,7 @@ function addNewColour() {
   const newColourId = "#" + randomChosenColour;
   const chosedElement = $(newColourId);
   pressSimulation(chosedElement);
+  playSound(randomChosenColour);
 }
 
 function countColours(pattern) {
