@@ -1,15 +1,16 @@
 const buttonColours = ["red", "blue", "green", "yellow"];
 const gamePattern = [];
 const userClickedPattern = [];
+let level = 0;
 
 function handleBtnClick(evt) {
   const clickedObj = evt.target;
   const userChosenColour = $(clickedObj).attr("id");
   //console.log(userChosenColour);
   userClickedPattern.push(userChosenColour);
-  //console.log(userClickedPattern);
-  playSound(userChosenColour);
+  console.log(userClickedPattern);
   pressSimulation($(clickedObj));
+  playSound(userChosenColour);
 }
 
 function playSound(selectedColor) {
@@ -54,6 +55,7 @@ function countColours(pattern) {
 }
 
 $(".btn").on("click", handleBtnClick);
+$(document).one("keydown", addNewColour);
 
 //console.log(randomChosenColour);
 
