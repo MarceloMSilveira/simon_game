@@ -3,6 +3,11 @@ const gamePattern = [];
 const userClickedPattern = [];
 let level = 0;
 
+function startGame() {
+  addNewColour();
+  $("h1").text(`Level: ${level}`);
+}
+
 function handleBtnClick(evt) {
   const clickedObj = evt.target;
   const userChosenColour = $(clickedObj).attr("id");
@@ -28,6 +33,8 @@ function pressSimulation(element) {
 
 function nextSequence() {
   let randomNumber = Math.floor(4 * Math.random());
+  level++;
+  $("h1").text(`Level: ${level}`);
   return randomNumber;
 }
 
@@ -55,7 +62,7 @@ function countColours(pattern) {
 }
 
 $(".btn").on("click", handleBtnClick);
-$(document).one("keydown", addNewColour);
+$(document).one("keydown", startGame);
 
 //console.log(randomChosenColour);
 
