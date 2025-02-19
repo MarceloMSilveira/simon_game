@@ -19,10 +19,11 @@ function setIndice() {
   }
 }
 
-function testChoosedColor(userColor) {
-  if (userColor === gamePattern[currentIndice]) {
-    pressSimulation($(clickedObj));
-    playSound(userChosenColour);
+function testChoosedColor(clickedObj) {
+  userColour = clickedObj.attr("id");
+  if (userColour === gamePattern[currentIndice]) {
+    pressSimulation(clickedObj);
+    playSound(userColour);
     setIndice();
   } else {
     console.log(`Game pattern: ${gamePattern}`);
@@ -41,11 +42,12 @@ function startGame() {
 }
 
 function handleBtnClick(evt) {
-  const userChosenColour = $(evt.target).attr("id");
+  const clickedObj = $(evt.target);
+  const userChosenColour = clickedObj.attr("id");
   //console.log(userChosenColour);
   userClickedPattern.push(userChosenColour);
   //console.log(userClickedPattern);
-  testChoosedColor(userChosenColour);
+  testChoosedColor(clickedObj);
 }
 
 function playSound(selectedColor) {
