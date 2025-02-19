@@ -1,30 +1,34 @@
 const buttonColours = ["red", "blue", "green", "yellow"];
-const gamePattern = [];
-const userClickedPattern = [];
+let gamePattern = [];
+let userClickedPattern = [];
 let level = 0;
 let currentIndice = 0;
+
+function changeGamePattern() {
+  currentIndice = 0;
+  userClickedPattern = [];
+  addNewColour();
+}
 
 function loseGameAnimation(params) {
   console.log("You Lose!");
 }
 
-function setIndice() {
-  currentIndice++;
-  if (gamePattern.length > currentIndice) {
-    currentIndice++;
-  } else {
-    currentIndice = 0;
-    userClickedPattern = [];
-    addNewColour();
+function checkEndOfGamePattern() {
+  if (gamePattern.length === currentIndice) {
+    setTimeout(() => {
+      changeGamePattern();
+    }, 1000);
   }
 }
 
-function testChoosedColor(clickedObj) {
+function testChoosedColour(clickedObj) {
   userColour = clickedObj.attr("id");
   if (userColour === gamePattern[currentIndice]) {
     pressSimulation(clickedObj);
     playSound(userColour);
-    setIndice();
+    currentIndice++;
+    checkEndOfGamePattern();
   } else {
     console.log(`Game pattern: ${gamePattern}`);
     console.log(`User pattern: ${userClickedPattern}`);
@@ -47,7 +51,7 @@ function handleBtnClick(evt) {
   //console.log(userChosenColour);
   userClickedPattern.push(userChosenColour);
   //console.log(userClickedPattern);
-  testChoosedColor(clickedObj);
+  testChoosedColour(clickedObj);
 }
 
 function playSound(selectedColor) {
