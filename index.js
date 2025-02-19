@@ -2,6 +2,38 @@ const buttonColours = ["red", "blue", "green", "yellow"];
 const gamePattern = [];
 const userClickedPattern = [];
 let level = 0;
+let currentIndice = 0;
+
+function loseGameAnimation(params) {
+  console.log("You Lose!");
+}
+
+function setIndice() {
+  currentIndice++;
+  if (gamePattern.length > currentIndice) {
+    currentIndice++;
+  } else {
+    currentIndice = 0;
+    userClickedPattern = [];
+    addNewColour();
+  }
+}
+
+function testChoosedColor(userColor) {
+  if (userColor === gamePattern[currentIndice]) {
+    pressSimulation($(clickedObj));
+    playSound(userChosenColour);
+    setIndice();
+  } else {
+    console.log(`Game pattern: ${gamePattern}`);
+    console.log(`User pattern: ${userClickedPattern}`);
+    loseGameAnimation();
+    gamePattern = [];
+    currentIndice = 0;
+    $("h1").text("Press A Key to Start");
+    $(document).one("keydown", startGame);
+  }
+}
 
 function startGame() {
   addNewColour();
@@ -9,13 +41,11 @@ function startGame() {
 }
 
 function handleBtnClick(evt) {
-  const clickedObj = evt.target;
-  const userChosenColour = $(clickedObj).attr("id");
+  const userChosenColour = $(evt.target).attr("id");
   //console.log(userChosenColour);
   userClickedPattern.push(userChosenColour);
-  console.log(userClickedPattern);
-  pressSimulation($(clickedObj));
-  playSound(userChosenColour);
+  //console.log(userClickedPattern);
+  testChoosedColor(userChosenColour);
 }
 
 function playSound(selectedColor) {
@@ -41,24 +71,11 @@ function nextSequence() {
 function addNewColour() {
   const randomChosenColour = buttonColours[nextSequence()];
   gamePattern.push(randomChosenColour);
-  console.log(randomChosenColour);
+  //console.log(randomChosenColour);
   // console.log(gamePattern);
-  const newColourId = "#" + randomChosenColour;
-  const chosedElement = $(newColourId);
+  const chosedElement = $("#" + randomChosenColour);
   pressSimulation(chosedElement);
   playSound(randomChosenColour);
-}
-
-function countColours(pattern) {
-  const colourCount = { red: 0, blue: 0, green: 0, yellow: 0 };
-
-  pattern.forEach((colour) => {
-    if (colourCount.hasOwnProperty(colour)) {
-      colourCount[colour]++;
-    }
-  });
-
-  return colourCount;
 }
 
 $(".btn").on("click", handleBtnClick);
@@ -72,3 +89,15 @@ $(document).one("keydown", startGame);
 
 //console.log(gamePattern);
 //console.log(countColours(gamePattern));
+
+// function countColours(pattern) {
+//   const colourCount = { red: 0, blue: 0, green: 0, yellow: 0 };
+
+//   pattern.forEach((colour) => {
+//     if (colourCount.hasOwnProperty(colour)) {
+//       colourCount[colour]++;
+//     }
+//   });
+
+//   return colourCount;
+// }
