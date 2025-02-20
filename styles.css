@@ -24,6 +24,12 @@ p {
   color: #FEF2BF;
 }
 
+button {
+  background-color: greenyellow;
+  color: black;
+  border-radius: 10px;
+}
+
 .container {
   display: block;
   width: 50%;

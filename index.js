@@ -62,6 +62,7 @@ function testChoosedColour(clickedObj) {
     level = 0;
     $("h1").html(`Game Over - Level reached: ${reachedLevel}`);
     $("h1").after(`<h2>Press A Key to restart</h2>`);
+    $("#inPhoneBtn").show();
     $(document).one("keydown", startGame);
   }
 }
@@ -70,6 +71,7 @@ function startGame() {
   addNewColour();
   $("h1").text(`Level: ${level}`);
   $("h2").hide();
+  $("#inPhoneBtn").hide();
   $("div.container .row:nth-of-type(3)").remove();
 }
 
@@ -108,6 +110,7 @@ function addNewColour() {
 
 $(".btn").on("click", handleBtnClick);
 $(document).one("keydown", startGame);
+$("#inPhoneBtn").on("click", startGame);
 
 //console.log(randomChosenColour);
 
