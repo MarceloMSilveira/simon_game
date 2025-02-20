@@ -52,16 +52,16 @@ function testChoosedColour(clickedObj) {
     currentIndice++;
     checkEndOfGamePattern();
   } else {
-    console.log(`Game pattern: ${gamePattern}`);
-    console.log(`User pattern: ${userClickedPattern}`);
+    console.log(`Padrão correto: ${gamePattern}`);
+    console.log(`Você mandou: ${userClickedPattern}`);
     showGamePatterns(gamePattern, userClickedPattern);
     loseGameAnimation();
     const reachedLevel = level;
     gamePattern = [];
     currentIndice = 0;
     level = 0;
-    $("h1").html(`Game Over - Level reached: ${reachedLevel}`);
-    $("h1").after(`<h2>Press A Key to restart</h2>`);
+    $("h1").html(`Game Over - Buscapé, seu nível foi: ${reachedLevel}`);
+    $("h1").after(`<h2>Recarregue e jogue de novo!</h2>`);
     $("#inPhoneBtn").show();
     $(document).one("keydown", startGame);
   }
@@ -69,7 +69,7 @@ function testChoosedColour(clickedObj) {
 
 function startGame() {
   addNewColour();
-  $("h1").text(`Level: ${level}`);
+  $("h1").text(`Nível: ${level}`);
   $("h2").hide();
   $("#inPhoneBtn").hide();
   $("div.container .row:nth-of-type(3)").remove();
