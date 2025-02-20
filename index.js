@@ -8,13 +8,14 @@ function showGamePatterns(game, user) {
   //adicionar o padrão do jogo e o padrão do jogador em um
   //div row ou parágrafo ao final do div row que e o segundo filho
   //do div container.
-  const div = "div.container:nth-child(2)";
+  const divSelector = "div.container .row:nth-of-type(2)";
+  const div = $(divSelector);
   const gamePatternText = game.join(" , ");
   const userPatternText = user.join(" , ");
   const paraghGame = `<p>Game Pattern: ${gamePatternText}</p>`;
   const paraghPlayer = `<p>Your Pattern: ${userPatternText}</p>`;
   const twoParagraphs = paraghGame + paraghPlayer;
-  $(div).after(`<div class="row">${twoParagraphs}</div>`);
+  div.after(`<div class="row">${twoParagraphs}</div>`);
 }
 
 function changeGamePattern() {
@@ -69,6 +70,7 @@ function startGame() {
   addNewColour();
   $("h1").text(`Level: ${level}`);
   $("h2").hide();
+  $("div.container .row:nth-of-type(3)").remove();
 }
 
 function handleBtnClick(evt) {
