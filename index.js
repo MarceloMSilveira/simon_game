@@ -4,10 +4,17 @@ let userClickedPattern = [];
 let level = 0;
 let currentIndice = 0;
 
-function showGamePatterns() {
+function showGamePatterns(game, user) {
   //adicionar o padrão do jogo e o padrão do jogador em um
   //div row ou parágrafo ao final do div row que e o segundo filho
   //do div container.
+  const div = "div.container:nth-child(2)";
+  const gamePatternText = game.join(" , ");
+  const userPatternText = user.join(" , ");
+  const paraghGame = `<p>Game Pattern: ${gamePatternText}</p>`;
+  const paraghPlayer = `<p>Your Pattern: ${userPatternText}</p>`;
+  const twoParagraphs = paraghGame + paraghPlayer;
+  $(div).after(`<div class="row">${twoParagraphs}</div>`);
 }
 
 function changeGamePattern() {
@@ -46,6 +53,7 @@ function testChoosedColour(clickedObj) {
   } else {
     console.log(`Game pattern: ${gamePattern}`);
     console.log(`User pattern: ${userClickedPattern}`);
+    showGamePatterns(gamePattern, userClickedPattern);
     loseGameAnimation();
     const reachedLevel = level;
     gamePattern = [];
@@ -53,7 +61,6 @@ function testChoosedColour(clickedObj) {
     level = 0;
     $("h1").html(`Game Over - Level reached: ${reachedLevel}`);
     $("h1").after(`<h2>Press A Key to restart</h2>`);
-    showGamePatterns();
     $(document).one("keydown", startGame);
   }
 }

@@ -17,6 +17,13 @@ h2 {
   color: #FEF2BF;
 }
 
+p {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  margin:  1%;
+  color: #FEF2BF;
+}
+
 .container {
   display: block;
   width: 50%;
