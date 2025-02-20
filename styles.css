@@ -38,13 +38,13 @@ button {
   flex-direction: column;
   align-items: center;
   width: 100%; /* Ajuste para preencher melhor telas menores */
-  max-width: 400px; /* Limita o tamanho em telas grandes */
+  max-width: 750px; /* Limita o tamanho em telas grandes */
   margin: auto;
 }
 
 .btn {
   flex: 1; /* Faz os botões ocuparem o mesmo espaço */
-  max-width: 45%; /* Garante que dois botões fiquem lado a lado */
+  max-width: 250px; /* Garante que dois botões fiquem lado a lado */
   height: 100px; /* Reduzi o tamanho para telas menores */
   border: 10px solid black;
   border-radius: 20px;
