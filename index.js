@@ -25,8 +25,7 @@ function checkEndOfGamePattern() {
 function testChoosedColour(clickedObj) {
   userColour = clickedObj.attr("id");
   if (userColour === gamePattern[currentIndice]) {
-    pressSimulation(clickedObj);
-    playSound(userColour);
+    playBtnEffects(clickedObj, userColour);
     currentIndice++;
     checkEndOfGamePattern();
   } else {
@@ -35,6 +34,7 @@ function testChoosedColour(clickedObj) {
     loseGameAnimation();
     gamePattern = [];
     currentIndice = 0;
+    level = 0;
     $("h1").text("Press A Key to Start");
     $(document).one("keydown", startGame);
   }
@@ -48,23 +48,20 @@ function startGame() {
 function handleBtnClick(evt) {
   const clickedObj = $(evt.target);
   const userChosenColour = clickedObj.attr("id");
-  //console.log(userChosenColour);
   userClickedPattern.push(userChosenColour);
-  //console.log(userClickedPattern);
   testChoosedColour(clickedObj);
 }
 
-function playSound(selectedColor) {
-  const src = "./sounds/" + selectedColor + ".mp3";
-  const audioObj = new Audio(src);
-  audioObj.play();
-}
-
-function pressSimulation(element) {
+function playBtnEffects(element, colour) {
+  //visual
   element.addClass("pressed");
   setTimeout(() => {
     element.removeClass("pressed");
   }, 100);
+  //audio
+  const src = "./sounds/" + colour + ".mp3";
+  const audioObj = new Audio(src);
+  audioObj.play();
 }
 
 function nextSequence() {
@@ -77,11 +74,8 @@ function nextSequence() {
 function addNewColour() {
   const randomChosenColour = buttonColours[nextSequence()];
   gamePattern.push(randomChosenColour);
-  //console.log(randomChosenColour);
-  // console.log(gamePattern);
   const chosedElement = $("#" + randomChosenColour);
-  pressSimulation(chosedElement);
-  playSound(randomChosenColour);
+  playBtnEffects(chosedElement, randomChosenColour);
 }
 
 $(".btn").on("click", handleBtnClick);
