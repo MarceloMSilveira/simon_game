@@ -32,10 +32,12 @@ function testChoosedColour(clickedObj) {
     console.log(`Game pattern: ${gamePattern}`);
     console.log(`User pattern: ${userClickedPattern}`);
     loseGameAnimation();
+    const reachedLevel = level;
     gamePattern = [];
     currentIndice = 0;
     level = 0;
-    $("h1").text("Press A Key to Start");
+    $("h1").html(`Congrats! Level reached: ${reachedLevel}`);
+    $("h1").after(`<h2>Press A Key to restart</h2>`);
     $(document).one("keydown", startGame);
   }
 }
@@ -43,6 +45,7 @@ function testChoosedColour(clickedObj) {
 function startGame() {
   addNewColour();
   $("h1").text(`Level: ${level}`);
+  $("h2").hide();
 }
 
 function handleBtnClick(evt) {
