@@ -4,14 +4,29 @@ let userClickedPattern = [];
 let level = 0;
 let currentIndice = 0;
 
+function showGamePatterns() {
+  //adicionar o padrão do jogo e o padrão do jogador em um
+  //div row ou parágrafo ao final do div row que e o segundo filho
+  //do div container.
+}
+
 function changeGamePattern() {
   currentIndice = 0;
   userClickedPattern = [];
   addNewColour();
 }
 
-function loseGameAnimation(params) {
-  console.log("You Lose!");
+function loseGameAnimation() {
+  console.log("Game over!");
+  //visual
+  $("body").addClass("game-over");
+  setTimeout(() => {
+    $("body").removeClass("game-over");
+  }, 200);
+  //audio
+  const src = "./sounds/wrong.mp3";
+  const audioObj = new Audio(src);
+  audioObj.play();
 }
 
 function checkEndOfGamePattern() {
@@ -36,8 +51,9 @@ function testChoosedColour(clickedObj) {
     gamePattern = [];
     currentIndice = 0;
     level = 0;
-    $("h1").html(`Congrats! Level reached: ${reachedLevel}`);
+    $("h1").html(`Game Over - Level reached: ${reachedLevel}`);
     $("h1").after(`<h2>Press A Key to restart</h2>`);
+    showGamePatterns();
     $(document).one("keydown", startGame);
   }
 }
